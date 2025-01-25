@@ -12,6 +12,7 @@ class Vehicle extends Model
 
     protected $fillable = [
         'tuition',
+        'axle',
         'vehicle_type'
     ];
 

@@ -11,8 +11,7 @@ class VehicleType extends Model
 
     protected $fillable = [
         'type',
-        'value',
-        'axle'
+        'value'
     ];
 
     public function vehicles()
