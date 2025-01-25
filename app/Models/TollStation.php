@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Vehicle;
+use App\Models\TollStationVehicle;
 
 class TollStation extends Model
 {
@@ -18,7 +19,8 @@ class TollStation extends Model
     public function vehicles()
     {
         return $this->belongsToMany(Vehicle::class)
-            ->as('tickets')
+            ->as('ticket')
+            ->using(TollStationVehicle::class)
             ->withTimestamps();
     }
 }

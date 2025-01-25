@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\VehicleType;
 use App\Models\TollStation;
+use App\Models\TollStationVehicle;
 
 class Vehicle extends Model
 {
@@ -13,7 +14,7 @@ class Vehicle extends Model
     protected $fillable = [
         'tuition',
         'axle',
-        'vehicle_type'
+        'vehicle_type_id'
     ];
 
     public function vehicleType()
@@ -24,7 +25,8 @@ class Vehicle extends Model
     public function tollStations()
     {
         return $this->belongsToMany(TollStation::class)
-            ->as('tickets')
+            ->as('ticket')
+            ->using(TollStationVehicle::class)
             ->withTimestamps();
     }
 }
