@@ -3,16 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Vehicle;
 
 class TollStation extends Model
 {
-        protected $table = 'toll_station';
+    protected $table = 'toll_station';
 
-        protected $fillable = [
-            'name',
-            'city',
-            'value'
-        ];
+    protected $fillable = [
+        'name',
+        'city',
+        'value'
+    ];
 
-        
+    public function vehicles()
+    {
+        return $this->belongsToMany(Vehicle::class)
+            ->as('tickets')
+            ->withTimestamps();
+    }
 }

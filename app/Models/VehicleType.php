@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Vehicle;
 
 class VehicleType extends Model
 {
@@ -13,4 +14,9 @@ class VehicleType extends Model
         'value',
         'axle'
     ];
+
+    public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class);
+    }
 }
