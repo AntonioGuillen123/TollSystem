@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('toll_station_id')->constrained('toll_station')->onDelete('cascade');
             $table->foreignId('vehicle_id')->constrained('vehicle')->onDelete('cascade');
+            $table->double('toll_value');
             $table->timestamps();
         });
     }
