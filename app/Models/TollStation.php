@@ -12,7 +12,7 @@ class TollStation extends Model
     protected $fillable = [
         'name',
         'city',
-        'value'
+        'station_value'
     ];
 
     public function vehicles()
