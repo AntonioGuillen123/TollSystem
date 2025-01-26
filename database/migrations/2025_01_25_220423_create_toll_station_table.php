@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('city');
-            $table->double('station_value');
+            $table->double('station_value')->default(0);
             $table->timestamps();
         });
     }
