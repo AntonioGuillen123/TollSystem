@@ -52,7 +52,6 @@ class TollStationVehicleSeeder extends Seeder
 
         foreach ($vehicleTollStations as $vehicleTollStation) {
             TollStationVehicle::create($vehicleTollStation);
-            // DB::table('toll_station_vehicle')->insert($vehicleTollStation);
         }
     }
 }
