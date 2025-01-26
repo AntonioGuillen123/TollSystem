@@ -32,5 +32,15 @@ class TollStationVehicle extends Pivot
                 ? $baseFee * $vehicle->axle
                 : $baseFee;
         });
+
+        static::created(function (TollStationVehicle $tollStationVehicle) {
+            $ticket = $tollStationVehicle->attributes;
+
+            $tollStation = TollStation::find($ticket['toll_station_id']);
+
+            $tollStation->station_value += $ticket['toll_value'];
+
+            $tollStation->save(); // Necesario de usar el save ya que no estoy utilizando create() o update(), lo estoy actualizando manualmente
+        });
     }
 }
