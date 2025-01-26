@@ -14,16 +14,16 @@ class TollStationSeeder extends Seeder
     public function run(): void
     {
         $tollStations = [
-            ['name' => 'Toll Station A', 'city' => 'New York', 'station_value' => 750],
-            ['name' => 'Toll Station B', 'city' => 'Los Angeles', 'station_value' => 550],
-            ['name' => 'Toll Station C', 'city' => 'Chicago', 'station_value' => 750],
-            ['name' => 'Toll Station D', 'city' => 'Houston', 'station_value' => 550],
-            ['name' => 'Toll Station E', 'city' => 'Miami', 'station_value' => 400],
-            ['name' => 'Toll Station F', 'city' => 'Dallas', 'station_value' => 450],
-            ['name' => 'Toll Station G', 'city' => 'Atlanta', 'station_value' => 150],
-            ['name' => 'Toll Station H', 'city' => 'Seattle', 'station_value' => 150],
-            ['name' => 'Toll Station I', 'city' => 'Denver', 'station_value' => 1150],
-            ['name' => 'Toll Station J', 'city' => 'San Francisco', 'station_value' => 900]
+            ['name' => 'Toll Station A', 'city' => 'New York'],
+            ['name' => 'Toll Station B', 'city' => 'Los Angeles'],
+            ['name' => 'Toll Station C', 'city' => 'Chicago'],
+            ['name' => 'Toll Station D', 'city' => 'Houston'],
+            ['name' => 'Toll Station E', 'city' => 'Miami'],
+            ['name' => 'Toll Station F', 'city' => 'Dallas'],
+            ['name' => 'Toll Station G', 'city' => 'Atlanta'],
+            ['name' => 'Toll Station H', 'city' => 'Seattle'],
+            ['name' => 'Toll Station I', 'city' => 'Denver'],
+            ['name' => 'Toll Station J', 'city' => 'San Francisco']
         ];
 
         foreach ($tollStations as $tollStation) {
