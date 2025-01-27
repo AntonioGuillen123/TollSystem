@@ -13,32 +13,61 @@ class TollController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, int $tollId)
+    public function __invoke(Request $request, $tollId)
     {
-        $toll = TollStation::find($tollId);
+        $toll = $this->getTollFromId($tollId);
 
-        if (!$toll) {
-            return response()->json([
-                'message' => 'The toll id does not exists'
-            ], 404);
-        }
-        
+        if (!$toll) 
+            return $this->responseWithError('The toll id does not exists', 404);
+
+        $vehicle = $this->getVehicleFromRequest($request);
+
+        if (!$vehicle) 
+            return $this->responseWithError('The vehicle id does not exists', 404);
+
+        $this->createTicket($toll, $vehicle);
+
+        return $this->responseWithSucess();
+    }
+
+    private function validateData($request)
+    {
         $validated = $request->validate([
             'vehicle_id' => 'required|integer|gt:0'
         ]);
 
-        $vehicle = Vehicle::find($validated['vehicle_id']);
+        return $validated;
+    }
 
-        if (!$vehicle) {
-            return response()->json([
-                'message' => 'The vehicle id does not exists'
-            ], 404);
-        }
+    private function getVehicleFromRequest($request)
+    {
+        $validated = $this->validateData($request);
 
+        return $this->getVehicleFromId($validated['vehicle_id']);
+    }
+
+    private function getTollFromId($tollId)
+    {
+        return TollStation::find($tollId);
+    }
+
+    private function getVehicleFromId($tollId)
+    {
+        return TollStation::find($tollId);
+    }
+
+    private function createTicket($toll, $vehicle)
+    {
         $toll->vehicles()->attach($vehicle);
+    }
 
+    private function responseWithSucess(){
         return response()->json([
-            'message' => 'Todo ok'
-        ], 201);
+            'message' => 'The vehicle has been registered for the toll successfully :)'
+        ], 200);
+    }
+
+    private function responseWithError($message, $statusError){
+        return response()->json($message . ' :(', $statusError);
     }
 }
