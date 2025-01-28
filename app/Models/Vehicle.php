@@ -30,4 +30,17 @@ class Vehicle extends Model
             ->withPivot('toll_value')
             ->withTimestamps();
     }
+
+    public function getAxles()
+    {
+        $axles = $this->axle;
+
+        $result = 'Without Axles';
+
+        if ($axles) {
+            $result = $axles . ' Axles';
+        }
+
+        return $result;
+    }
 }
