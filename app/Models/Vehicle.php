@@ -27,6 +27,7 @@ class Vehicle extends Model
         return $this->belongsToMany(TollStation::class)
             ->as('ticket')
             ->using(TollStationVehicle::class)
+            ->withPivot('toll_value')
             ->withTimestamps();
     }
 }
