@@ -20,15 +20,8 @@ class TollController extends Controller
         }
 
         $vehicles = $this->getVehiclesGroupedById($id);
-        /* $groupedVehicles = $this->getVehiclesGroupBy($tolls, 'id'); */
 
-        return response()->json([
-            'toll' => $toll,
-            'vehicles' => $vehicles
-            /* 'KE' => $KHEEEE */
-        ], 200);
-
-        //return view('showToll');
+        return view('showToll', compact('toll', 'vehicles'));
     }
 
     private function getTollFromId($id)
@@ -38,7 +31,7 @@ class TollController extends Controller
 
     private function getVehiclesGroupedById($id)
     {
-        return TollStationVehicle::with('vehicle')
+        return TollStationVehicle::with(['vehicle', 'vehicle.vehicleType'])
             ->where('toll_station_id', $id)->groupBy('toll_station_id', 'vehicle_id', 'toll_value')
             ->selectRaw('vehicle_id, toll_value, COUNT(*) as totalCount')
             ->get();
@@ -48,25 +41,4 @@ class TollController extends Controller
     {
         return redirect()->route('home');
     }
-
-
-    /* private function getVehiclesGroupBy($tolls, $groupField)
-    {
-        $groupedVehiclesWithLength = [];
-
-        foreach ($tolls as $toll) {
-            $groupedVehicles = $toll->vehicles->groupBy($groupField);
-
-            $groupedVehiclesWithLength[] = [
-                'vehicles' => $groupedVehicles,
-                'count' => $groupedVehicles
-            ]
-        }
-
-        return $groupedVehicles;
-    }
-
-    private function makeFinalTolls(){
-
-    } */
 }
