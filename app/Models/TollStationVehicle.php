@@ -18,6 +18,14 @@ class TollStationVehicle extends Pivot
 
     public $incrementing = true;
 
+    public function vehicle(){
+        return $this->belongsTo(Vehicle::class);
+    }
+
+    public function tollStation(){
+        return $this->belongsTo(TollStation::class);
+    }
+
     protected static function booted()
     {
         static::creating(function (TollStationVehicle $tollStationVehicle) {
