@@ -8,7 +8,7 @@
             <div class="text-lg">
                 @forelse ($tolls as $toll)
                     <a class="flex justify-around gap-1 min-w-56 border-t-[1px] p-1.5 cursor-pointer hover:bg-[#5b5858]"
-                        href="{{-- {{ route('showToll', $toll->id) }} --}}">
+                        href="{{ route('showToll', $toll->id) }}">
                         <div>
                             {{ $toll->name }}
                         </div>
