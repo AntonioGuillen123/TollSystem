@@ -17,8 +17,8 @@
                         </div>
                     </a>
                 @empty
-                    <div>
-                        Don´t exist tolls :(
+                    <div class="flex justify-center pb-1">
+                        There are no tolls :(
                     </div>
                 @endforelse
             </div>
