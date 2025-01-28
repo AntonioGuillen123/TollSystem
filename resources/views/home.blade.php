@@ -10,6 +10,9 @@
                     <a class="flex justify-around gap-1 min-w-56 border-t-[1px] p-1.5 cursor-pointer hover:bg-[#5b5858]"
                         href="{{ route('showToll', $toll->id) }}">
                         <div>
+                            {{ $toll->id }}
+                        </div>
+                        <div>
                             {{ $toll->name }}
                         </div>
                         <div class="font-normal">
