@@ -20,6 +20,10 @@ class TollController extends Controller
         }
 
         $vehicles = $this->getVehiclesGroupedById($id);
+        /* return response()->json([
+            't' => $toll,
+            'v' => $vehicles
+        ]); */
 
         return view('showToll', compact('toll', 'vehicles'));
     }
