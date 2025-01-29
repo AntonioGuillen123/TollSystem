@@ -18,11 +18,13 @@ class TollStationVehicle extends Pivot
 
     public $incrementing = true;
 
-    public function vehicle(){
+    public function vehicle()
+    {
         return $this->belongsTo(Vehicle::class);
     }
 
-    public function tollStation(){
+    public function tollStation()
+    {
         return $this->belongsTo(TollStation::class);
     }
 
@@ -30,7 +32,7 @@ class TollStationVehicle extends Pivot
     {
         static::creating(function (TollStationVehicle $tollStationVehicle) {
             $ticket = $tollStationVehicle->attributes;
-            
+
             $vehicle = Vehicle::find($ticket['vehicle_id']);
 
             $vehicleType = $vehicle->vehicleType;
@@ -52,7 +54,8 @@ class TollStationVehicle extends Pivot
         });
     }
 
-    public function scopeGetVehiclesGroupedById($query, $id){ // Query Scope para que en cualquier lado de la app se pueda hacer esta consulta, funciona como cualquier función de SQL
+    public function scopeGetVehiclesGroupedById($query, $id)
+    { // Query Scope para que en cualquier lado de la app se pueda hacer esta consulta, funciona como cualquier función de SQL
         return $query->with(['vehicle', 'vehicle.vehicleType'])
             ->where('toll_station_id', $id)->groupBy('toll_station_id', 'vehicle_id', 'toll_value')
             ->selectRaw('vehicle_id, toll_value, COUNT(*) as totalCount');
