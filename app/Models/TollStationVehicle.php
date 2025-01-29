@@ -51,4 +51,10 @@ class TollStationVehicle extends Pivot
             $tollStation->save(); // Necesario de usar el save ya que no estoy utilizando create() o update(), lo estoy actualizando manualmente
         });
     }
+
+    public function scopeGetVehiclesGroupedById($query, $id){ // Query Scope para que en cualquier lado de la app se pueda hacer esta consulta, funciona como cualquier función de SQL
+        return $query->with(['vehicle', 'vehicle.vehicleType'])
+            ->where('toll_station_id', $id)->groupBy('toll_station_id', 'vehicle_id', 'toll_value')
+            ->selectRaw('vehicle_id, toll_value, COUNT(*) as totalCount');
+    }
 }
