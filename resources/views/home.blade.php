@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex flex-wrap justify-around p-4 w-full">
         <div id="tolls"
-            class="flex flex-col bg-[#434141] rounded-lg text-white font-bold w-[17rem] overflow-hidden gap-2">
+            class="flex flex-col bg-[#434141] rounded-lg border-2 border-black text-white font-bold w-[17rem] overflow-hidden gap-2">
             <div class="flex text-2xl justify-center pt-1 px-1">Tolls</div>
             <div class="text-lg">
                 @forelse ($tolls as $toll)
