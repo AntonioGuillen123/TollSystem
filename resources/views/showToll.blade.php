@@ -3,8 +3,8 @@
 @php
     $tollId = $toll->id;
     $tollName = $toll->name;
-    $tollCity = $toll->name;
-    $stationValue = $toll->name;
+    $tollCity = $toll->city;
+    $stationValue = $toll->station_value;
 @endphp
 
 @section('title')
@@ -33,7 +33,8 @@
             @foreach ($vehicles as $vehicle)
                 @php
                     $totalCount = $vehicle->totalCount;
-                    $ticketValue = $vehicle->toll_value;
+                    $ticketValue = $vehicle->ticketValue;
+                    $totalValue = $vehicle->stationValue;
                     $vehicle = $vehicle->vehicle;
 
                     $vehicleId = $vehicle->id;
@@ -44,7 +45,6 @@
 
                     $type = $vehicleType->type;
                     $baseValue = $vehicleType->base_fee;
-                    $totalValue = $ticketValue * $totalCount;
 
                     $totalCountText = $totalCount > 1 ? $totalCount . ' Times' : $totalCount . ' Time';
                 @endphp

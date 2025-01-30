@@ -59,7 +59,7 @@ class TollStationVehicle extends Pivot
         return $query->with(['vehicle', 'vehicle.vehicleType']) // Cargamos la relación
             ->where('toll_station_id', $id) // Donde el id de la estación sea el especificado
             ->groupBy('toll_station_id', 'vehicle_id', 'toll_value') // Lo agrupamos para que te de valores que tengas iguales esos campos (Agrupa por los mismos vehículos que han pasado por la misma estación al mismo precio)
-            ->selectRaw('vehicle_id, toll_value, COUNT(*) as totalCount'); // Que te seleccione cuantos hay en cada agrupación (Para saber cuantos vehículos ha pasado por esa estación) y un total de lo que se ha gastado en la estación. 
+            ->selectRaw('vehicle_id, toll_value as ticketValue, COUNT(*) as totalCount, toll_value * COUNT(*) as stationValue'); // Que te seleccione cuantos hay en cada agrupación (Para saber cuantos vehículos ha pasado por esa estación) y un total de lo que se ha gastado en la estación. 
     }
 
     public function scopeGetTollsGroupedById($query, $id)
