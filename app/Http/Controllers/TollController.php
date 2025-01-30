@@ -21,7 +21,7 @@ class TollController extends Controller
 
         $vehicles = $this->getVehiclesGroupedById($id);
 
-        return view('showToll', compact('toll', 'vehicles'));
+        return $this->responseWithSuccess($toll, $vehicles);
     }
 
     private function getTollFromId($id)
@@ -32,6 +32,11 @@ class TollController extends Controller
     private function getVehiclesGroupedById($id)
     {
         return TollStationVehicle::getVehiclesGroupedById($id)->get();
+    }
+
+    private function responseWithSuccess($toll, $vehicles)
+    {
+        return view('showToll', compact('toll', 'vehicles'));
     }
 
     private function responseWithRedirect()
