@@ -14,19 +14,21 @@ class TollStationVehicleTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_CheckIfTollStationVehicleHasVehicleRelationship(){
+    public function test_CheckIfTollStationVehicleHasVehicleRelationship()
+    {
         $this->seed(DatabaseSeeder::class);
 
         $tollStationVehicle = TollStationVehicle::find(1);
-        
+
         $this->assertInstanceOf(Vehicle::class, $tollStationVehicle->vehicle);
     }
 
-    public function test_CheckIfTollStationVehicleHasTollStationRelationship(){
+    public function test_CheckIfTollStationVehicleHasTollStationRelationship()
+    {
         $this->seed(DatabaseSeeder::class);
 
         $tollStationVehicle = TollStationVehicle::find(1);
-        
+
         $this->assertInstanceOf(TollStation::class, $tollStationVehicle->tollStation);
     }
 }
