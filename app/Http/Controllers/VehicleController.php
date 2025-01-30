@@ -39,10 +39,6 @@ class VehicleController extends Controller
     private function responseWithSuccess($vehicle, $tolls)
     {
         return view('showVehicle', compact('vehicle', 'tolls'));
-        /* return response()->json([
-            'vehicle' => $vehicle,
-            'tolls'
-        ], 200); */
     }
 
     private function responseWithRedirect()
