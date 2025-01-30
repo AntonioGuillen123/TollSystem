@@ -16,7 +16,7 @@ class HomeController extends Controller
         $tolls = $this->getTollsFromDB();
         $vehicles = $this->getVehiclesFromDB();
 
-        return view('home', compact('tolls', 'vehicles'));
+        return $this->responseWithSuccess($tolls, $vehicles);
     }
 
     private function getTollsFromDB(){
@@ -25,5 +25,10 @@ class HomeController extends Controller
 
     private function getVehiclesFromDB(){
         return Vehicle::all();
+    }
+
+    private function responseWithSuccess($tolls, $vehicles)
+    {
+        return view('home', compact('tolls', 'vehicles'));
     }
 }
