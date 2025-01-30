@@ -13,7 +13,7 @@ class HomeTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_CheckIfHomeIsLoadedWithData()
+    public function test_CheckIfHomeViewIsLoadedWithData()
     {
         $this->seed(TestSeeder::class);
 
