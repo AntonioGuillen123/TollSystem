@@ -59,4 +59,25 @@ class TollTest extends TestCase
 
         $this->assertDatabaseCount($table, 0);
     }
+
+    public function test_CheckIfCreateNewTicketFromIdsWithWrongVehicleId()
+    {
+        $this->seed(TestSeeder::class);
+
+        $response = $this->postJson(route('createTollTicket', 1), [
+            'vehicle_id' => 9999
+        ]);
+
+        $responseData = [
+            'message' => 'The vehicle id does not exists :('
+        ];
+
+        $response
+            ->assertStatus(404)
+            ->assertJsonFragment($responseData);
+
+        $table = 'toll_station_vehicle';
+
+        $this->assertDatabaseCount($table, 0);
+    }
 }
