@@ -48,7 +48,9 @@ class Vehicle extends Model
     {
         $axle = $this->axle ?? 1;
 
-        $ticket = $axle * $this->vehicleType->base_fee;
+        $baseFee = $this->vehicleType->base_fee;
+
+        $ticket = $axle * $baseFee;
 
         return $ticket;
     }
