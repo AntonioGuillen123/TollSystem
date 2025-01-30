@@ -1,24 +1,31 @@
 @extends('layout.app')
 
+@php
+    $tollId = $toll->id;
+    $tollName = $toll->name;
+    $tollCity = $toll->name;
+    $stationValue = $toll->name;
+@endphp
+
 @section('title')
-    {{ $toll->name }}
+    {{ $tollName }}
 @endsection
 
 @section('content')
     <div class="flex flex-col flex-wrap gap-16 p-4 w-full">
         <div id="headerToll" class="flex flex-col gap-8 text-white border-2 border-black rounded-lg bg-[#434141] p-2">
             <div class="flex justify-center text-3xl font-bold ">
-                {{ $toll->name }}
+                {{ $tollName }}
             </div>
             <div class="flex text-2xl justify-around">
                 <div>
-                    <b>Id:</b> {{ $toll->id }}
+                    <b>Id:</b> {{ $tollId }}
                 </div>
                 <div>
-                    <b>City:</b> {{ $toll->city }}
+                    <b>City:</b> {{ $tollCity }}
                 </div>
                 <div>
-                    <b>Station Value:</b> {{ $toll->station_value }} €
+                    <b>Station Value:</b> {{ $stationValue }} €
                 </div>
             </div>
         </div>
@@ -29,18 +36,20 @@
                     $ticketValue = $vehicle->toll_value;
                     $vehicle = $vehicle->vehicle;
 
-                    $vehicleType = $vehicle->vehicleType;
-
                     $vehicleId = $vehicle->id;
                     $tuition = $vehicle->tuition;
-                    $type = $vehicleType->type;
 
-                    $totalValue = $ticketValue * $totalCount;
+                    $vehicleType = $vehicle->vehicleType;
+                    $vehicleAxles = $vehicle->getAxles();
+
+                    $type = $vehicleType->type;
                     $baseValue = $vehicleType->base_fee;
+                    $totalValue = $ticketValue * $totalCount;
 
                     $totalCountText = $totalCount > 1 ? $totalCount . ' Times' : $totalCount . ' Time';
                 @endphp
-                <div class="flex flex-col border-2 w-56 h-64 justify-between bg-[#434141] hover:bg-[#5b5858] border-black rounded-lg p-2">
+                <a href="{{ route('showVehicle', $vehicleId) }}"
+                    class="flex flex-col border-2 w-56 h-64 justify-between bg-[#434141] hover:bg-[#5b5858] border-black rounded-lg p-2">
                     <div>
                         <div class="flex justify-center font-bold">
                             {{ $tuition }} <b>-</b> {{ $type }}
@@ -51,7 +60,7 @@
                         </div>
                         <div class="flex justify-between">
                             <div class="font-bold">Axles: </div>
-                            <div>{{ $vehicle->getAxles() }}</div>
+                            <div>{{ $vehicleAxles }}</div>
                         </div>
                     </div>
                     <div>
@@ -74,7 +83,7 @@
                             <div>{{ $totalCountText }}</div>
                         </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>
