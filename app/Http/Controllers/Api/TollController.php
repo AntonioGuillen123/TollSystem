@@ -61,7 +61,7 @@ class TollController extends Controller
         $toll->vehicles()->attach($vehicle);
     }
 
-    private function responseWithSucess(){
+    private function responseWithSuccess(){
         return response()->json([
             'message' => 'The vehicle has been registered for the toll successfully :)'
         ], 200);
