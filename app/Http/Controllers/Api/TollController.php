@@ -27,7 +27,7 @@ class TollController extends Controller
 
         $this->createTicket($toll, $vehicle);
 
-        return $this->responseWithSucess();
+        return $this->responseWithSuccess();
     }
 
     private function validateData($request)
