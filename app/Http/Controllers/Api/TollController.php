@@ -53,7 +53,7 @@ class TollController extends Controller
 
     private function getVehicleFromId($tollId)
     {
-        return TollStation::find($tollId);
+        return Vehicle::find($tollId);
     }
 
     private function createTicket($toll, $vehicle)
