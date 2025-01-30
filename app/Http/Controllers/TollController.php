@@ -13,7 +13,7 @@ class TollController extends Controller
      */
     public function __invoke($id)
     {
-        $toll = $this->getTollFromId($id);
+        $toll = $this->getTollById($id);
 
         if (!$toll) {
             return $this->responseWithRedirect();
@@ -24,7 +24,7 @@ class TollController extends Controller
         return $this->responseWithSuccess($toll, $vehicles);
     }
 
-    private function getTollFromId($id)
+    private function getTollById($id)
     {
         return TollStation::find($id);
     }
