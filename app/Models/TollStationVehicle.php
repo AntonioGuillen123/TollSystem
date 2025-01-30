@@ -57,7 +57,16 @@ class TollStationVehicle extends Pivot
     public function scopeGetVehiclesGroupedById($query, $id)
     { // Query Scope para que en cualquier lado de la app se pueda hacer esta consulta, funciona como cualquier función de SQL
         return $query->with(['vehicle', 'vehicle.vehicleType'])
-            ->where('toll_station_id', $id)->groupBy('toll_station_id', 'vehicle_id', 'toll_value')
+            ->where('toll_station_id', $id)
+            ->groupBy('toll_station_id', 'vehicle_id', 'toll_value')
             ->selectRaw('vehicle_id, toll_value, COUNT(*) as totalCount');
+    }
+
+    public function scopeGetTollsGroupedById($query, $id)
+    {
+        return $query->with('tollStation')
+            ->where('vehicle_id', $id)
+            ->groupBy('toll_station_id', 'vehicle_id', 'toll_value')
+            ->selectRaw('toll_station_id, toll_value, COUNT(*) as totalCount');
     }
 }
