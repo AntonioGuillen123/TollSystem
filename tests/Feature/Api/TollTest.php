@@ -38,4 +38,25 @@ class TollTest extends TestCase
         $this->assertDatabaseCount($table, 1);
         $this->assertDatabaseHas($table, $databaseData);
     }
+
+    public function test_CheckIfCreateNewTicketFromIdsWithWrongTollId()
+    {
+        $this->seed(TestSeeder::class);
+
+        $response = $this->postJson(route('createTollTicket', -1), [
+            'vehicle_id' => 1
+        ]);
+
+        $responseData = [
+            'message' => 'The toll id does not exists :('
+        ];
+
+        $response
+            ->assertStatus(404)
+            ->assertJsonFragment($responseData);
+
+        $table = 'toll_station_vehicle';
+
+        $this->assertDatabaseCount($table, 0);
+    }
 }

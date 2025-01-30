@@ -17,12 +17,12 @@ class TollController extends Controller
     {
         $toll = $this->getTollFromId($tollId);
 
-        if (!$toll) 
+        if (!$toll)
             return $this->responseWithError('The toll id does not exists', 404);
 
         $vehicle = $this->getVehicleFromRequest($request);
 
-        if (!$vehicle) 
+        if (!$vehicle)
             return $this->responseWithError('The vehicle id does not exists', 404);
 
         $this->createTicket($toll, $vehicle);
@@ -61,13 +61,19 @@ class TollController extends Controller
         $toll->vehicles()->attach($vehicle);
     }
 
-    private function responseWithSuccess(){
+    private function responseWithSuccess()
+    {
         return response()->json([
             'message' => 'The vehicle has been registered for the toll successfully :)'
         ], 200);
     }
 
-    private function responseWithError($message, $statusError){
-        return response()->json($message . ' :(', $statusError);
+    private function responseWithError($message, $statusError)
+    {
+        $message .= ' :(';
+
+        return response()->json([
+            'message' => $message
+        ], $statusError);
     }
 }
