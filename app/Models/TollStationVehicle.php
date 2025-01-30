@@ -56,17 +56,17 @@ class TollStationVehicle extends Pivot
 
     public function scopeGetVehiclesGroupedById($query, $id)
     { // Query Scope para que en cualquier lado de la app se pueda hacer esta consulta, funciona como cualquier función de SQL
-        return $query->with(['vehicle', 'vehicle.vehicleType'])
-            ->where('toll_station_id', $id)
-            ->groupBy('toll_station_id', 'vehicle_id', 'toll_value')
-            ->selectRaw('vehicle_id, toll_value, COUNT(*) as totalCount');
+        return $query->with(['vehicle', 'vehicle.vehicleType']) // Cargamos la relación
+            ->where('toll_station_id', $id) // Donde el id de la estación sea el especificado
+            ->groupBy('toll_station_id', 'vehicle_id', 'toll_value') // Lo agrupamos para que te de valores que tengas iguales esos campos (Agrupa por los mismos vehículos que han pasado por la misma estación al mismo precio)
+            ->selectRaw('vehicle_id, toll_value, COUNT(*) as totalCount'); // Que te seleccione cuantos hay en cada agrupación (Para saber cuantos vehículos ha pasado por esa estación) y un total de lo que se ha gastado en la estación. 
     }
 
     public function scopeGetTollsGroupedById($query, $id)
     {
-        return $query->with('tollStation')
-            ->where('vehicle_id', $id)
-            ->groupBy('toll_station_id', 'vehicle_id', 'toll_value')
-            ->selectRaw('toll_station_id, toll_value, COUNT(*) as totalCount');
+        return $query->with('tollStation') // Cargamos la relación
+            ->where('vehicle_id', $id) // Donde el id del vehículo sea el especificado
+            ->groupBy('toll_station_id', 'vehicle_id', 'toll_value') // Lo agrupamos para que te de valores que tengas iguales esos campos (Agrupa por los mismos vehículos que han pasado por la misma estación al mismo precio)
+            ->selectRaw('toll_station_id, COUNT(*) as totalCount, toll_value * COUNT(*) as stationValue'); // Que te seleccione cuantos hay en cada agrupación (Para saber cuantas veces ha pasado por esa estación) y un total de lo que se ha gastado en la estación.
     }
 }
