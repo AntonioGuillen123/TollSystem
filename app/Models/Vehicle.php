@@ -43,4 +43,13 @@ class Vehicle extends Model
 
         return $result;
     }
+
+    public function getTicket()
+    {
+        $axle = $this->axle ?? 1;
+
+        $ticket = $axle * $this->vehicleType->base_fee;
+
+        return $ticket;
+    }
 }
