@@ -52,7 +52,7 @@
                     class="flex flex-col border-2 w-56 h-64 justify-between bg-[#434141] hover:bg-[#5b5858] border-black rounded-lg p-2">
                     <div>
                         <div class="flex justify-center font-bold">
-                            {{ $tuition }} <b>-</b> {{ $type }}
+                            {{ $tuition }} - {{ $type }}
                         </div>
                         <div class="flex justify-between pt-2">
                             <div class="font-bold">Id: </div>
