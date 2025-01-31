@@ -13,11 +13,12 @@ The platform consists of the following views:
 
 ![image](https://res.cloudinary.com/dierpqujk/image/upload/v1738328832/screencapture-127-0-0-1-8000-2025-01-31-14_06_39_bdekam.png)
 
-
 - **Toll View**
+
 ![image](https://res.cloudinary.com/dierpqujk/image/upload/v1738328863/screencapture-127-0-0-1-8000-toll-1-2025-01-31-14_07_21_f9sehy.png)
 
 - **Vehicle View**
+
 ![image](https://res.cloudinary.com/dierpqujk/image/upload/v1738328864/screencapture-127-0-0-1-8000-vehicle-1-2025-01-31-14_07_31_t4aumt.png)
 
 ## 🛠️🚀 Tech Stack
